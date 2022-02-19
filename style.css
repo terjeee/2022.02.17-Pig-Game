@@ -11,6 +11,10 @@ html {
   box-sizing: border-box;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
@@ -140,7 +144,7 @@ main {
 }
 
 .btn:active {
-  transform: translate(-50%, 3px);
+  transform: translate(-50%, 0.1rem);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
 
