@@ -69,7 +69,7 @@ btnNewGame.addEventListener(`click`, function () {
   showCurrentScore0(currentScore1);
   showCurrentScore1(currentScore1);
   diceEl.classList.add(`hidden`);
-  btnsDisabled = false;
+  btnsDisabled(false);
 
   if (!player0El.classList.contains(`player--active`)) {
     switchActivePlayer();
@@ -117,8 +117,8 @@ btnHold.addEventListener(`click`, function () {
   const player0Text = document.querySelector(`#name--0`);
   const player1Text = document.querySelector(`#name--1`);
 
-  if (totalScore0 >= 20 || totalScore1 >= 20) {
-    totalScore0 >= 20
+  if (totalScore0 >= 100 || totalScore1 >= 100) {
+    totalScore0 >= 100
       ? (player0Text.textContent = `WINNER!`)
       : (player1Text.textContent = `WINNER!`);
     btnsDisabled(true);
