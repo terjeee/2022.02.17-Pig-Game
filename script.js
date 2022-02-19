@@ -82,9 +82,7 @@ btnRollDice.addEventListener(`click`, function () {
   diceNumber = Math.floor(Math.random() * 6) + 1;
 
   diceEl.setAttribute(`src`, `dice-${diceNumber}.png`);
-  if (diceEl.classList.contains(`hidden`)) {
-    diceEl.classList.remove(`hidden`);
-  }
+  diceEl.classList.remove(`hidden`);
 
   if (player0El.classList.contains(`player--active`)) {
     if (diceNumber === 1) {
