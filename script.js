@@ -9,6 +9,8 @@ const imgArray = []; // ???
 
 const player0El = document.querySelector(`.player--0`);
 const player1El = document.querySelector(`.player--1`);
+const player0Title = document.querySelector(`#name--0`);
+const player1Title = document.querySelector(`#name--1`);
 
 const btnNewGame = document.querySelector(`.btn--new`);
 const btnRollDice = document.querySelector(`.btn--roll`);
@@ -30,13 +32,8 @@ function showCurrentScore1(value) {
 }
 
 function switchActivePlayer() {
-  if (player0El.classList.contains(`player--active`)) {
-    player0El.classList.remove(`player--active`);
-    player1El.classList.add(`player--active`);
-  } else {
-    player1El.classList.remove(`player--active`);
-    player0El.classList.add(`player--active`);
-  }
+  player0El.classList.toggle(`player--active`);
+  player1El.classList.toggle(`player--active`);
 }
 
 function resetCurrentScores() {
@@ -57,24 +54,6 @@ showTotalScore1(totalScore1);
 showCurrentScore0(currentScore0);
 showCurrentScore1(currentScore1);
 diceEl.classList.add(`hidden`);
-
-// newGame-btn --
-btnNewGame.addEventListener(`click`, function () {
-  totalScore0 = 0;
-  totalScore1 = 0;
-  resetCurrentScores();
-
-  showTotalScore0(totalScore0);
-  showTotalScore1(totalScore1);
-  showCurrentScore0(currentScore1);
-  showCurrentScore1(currentScore1);
-  diceEl.classList.add(`hidden`);
-  btnsDisabled(false);
-
-  if (!player0El.classList.contains(`player--active`)) {
-    switchActivePlayer();
-  }
-});
 
 // rollDice --
 btnRollDice.addEventListener(`click`, function () {
@@ -112,13 +91,10 @@ btnHold.addEventListener(`click`, function () {
   showTotalScore0(totalScore0);
   showTotalScore1(totalScore1);
 
-  const player0Text = document.querySelector(`#name--0`);
-  const player1Text = document.querySelector(`#name--1`);
-
-  if (totalScore0 >= 100 || totalScore1 >= 100) {
-    totalScore0 >= 100
-      ? (player0Text.textContent = `WINNER!`)
-      : (player1Text.textContent = `WINNER!`);
+  if (totalScore0 >= 20 || totalScore1 >= 20) {
+    totalScore0 >= 20
+      ? (player0Title.textContent = `WINNER!`)
+      : (player1Title.textContent = `WINNER!`);
     btnsDisabled(true);
     resetCurrentScores();
     showCurrentScore0(currentScore0);
@@ -127,6 +103,27 @@ btnHold.addEventListener(`click`, function () {
     resetCurrentScores();
     showCurrentScore0(currentScore0);
     showCurrentScore1(currentScore1);
+    switchActivePlayer();
+  }
+});
+
+// newGame-btn --
+btnNewGame.addEventListener(`click`, function () {
+  totalScore0 = 0;
+  totalScore1 = 0;
+  resetCurrentScores();
+
+  showTotalScore0(totalScore0);
+  showTotalScore1(totalScore1);
+  showCurrentScore0(currentScore1);
+  showCurrentScore1(currentScore1);
+  diceEl.classList.add(`hidden`);
+  btnsDisabled(false);
+
+  player0Title.textContent = `PLAYER 1`;
+  player1Title.textContent = `PLAYER 2`;
+
+  if (!player0El.classList.contains(`player--active`)) {
     switchActivePlayer();
   }
 });
